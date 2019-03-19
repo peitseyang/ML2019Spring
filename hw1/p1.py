@@ -5,8 +5,8 @@ data = [line.strip('\n').split('\t') for line in open('./data1.txt','r')]
 x, y = zip(*data)
 x, y = list(map(int, x)), list(map(float, y))
 
-iter_num = 100
-lr = 0.001
+iter_num = 1000
+lr = 0.0001
 init_w0 = 0.0
 init_w1 = 0.0
 print('Initialize (w0, w1) as (%d, %d), running %d iteration and the learning rate is %f' 
@@ -19,13 +19,13 @@ for i in range(iter_num):
     err = 0.0
     for j in range(len(data)):
         grad_w0 -= (2 / len(data)) * (y[j] - f(x[j]))
-        grad_w1 -= (2 / len(data)) * (y[j] - f(x[j])) * init_w0
+        grad_w1 -= (2 / len(data)) * (y[j] - f(x[j])) * x[j]
         err += (y[j] - f(x[j])) ** 2
     init_w0 -= lr * grad_w0
     init_w1 -= lr * grad_w1
     err /= len(data)
-    # print('[%d/%d] W(w0, w1) = (%d, %d), Err = %d'
-    #     % (i+1, iter_num, round(init_w0, 2), round(init_w1, 2), round(err, 2)))
+    print('[%d/%d] W(w0, w1) = (%d, %d), Err = %d'
+        % (i+1, iter_num, round(init_w0, 2), round(init_w1, 2), round(err, 2)))
 print('Result: Weight (w0, w1) = (%d, %d)' % (init_w0, init_w1))
 
 for i in [45, 25]:
