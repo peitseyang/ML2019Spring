@@ -5,8 +5,8 @@ data = [line.strip('\n').split('\t') for line in open('./data1.txt','r')]
 x, y = zip(*data)
 x, y = list(map(int, x)), list(map(float, y))
 
-iter_num = 1000
-lr = 0.0001
+iter_num = 10000
+lr = 0.00155
 init_w0 = 0.0
 init_w1 = 0.0
 print('Initialize (w0, w1) as (%d, %d), running %d iteration and the learning rate is %f' 
@@ -24,12 +24,13 @@ for i in range(iter_num):
     init_w0 -= lr * grad_w0
     init_w1 -= lr * grad_w1
     err /= len(data)
-    print('[%d/%d] W(w0, w1) = (%d, %d), Err = %d'
-        % (i+1, iter_num, round(init_w0, 2), round(init_w1, 2), round(err, 2)))
-print('Result: Weight (w0, w1) = (%d, %d)' % (init_w0, init_w1))
+    if i % 500 == 499:
+        print('[%d/%d] W(w0, w1) = (%.4f, %.4f), Err = %.4f'
+            % (i+1, iter_num, init_w0, init_w1, err))
+print('Result: Weight (w0, w1) = (%.4f, %.4f)' % (init_w0, init_w1))
 
 for i in [45, 25]:
-    print('When x = %d, the predicted value will be %d' % (i, f(i)))
+    print('When x = %d, the predicted value will be %.1f' % (i, f(i)))
 
 x_range = np.linspace(min(x), max(x), 50)
 plt.xlabel('x')
