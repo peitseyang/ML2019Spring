@@ -18,8 +18,6 @@ for i in range(iter_num):
     grad_w = np.array([0.0 for i in range(5)])
     err = 0.0
     for j in range(len(data)):
-        # print(y[j])
-        # print(f(x[j]))
         temp = y[j] - f(x[j])
         for k in range(len(grad_w)):
             if k == 0:
