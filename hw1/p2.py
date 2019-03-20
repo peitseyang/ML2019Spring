@@ -36,5 +36,5 @@ print('Result: Weight (w0, w1, w2, w3, w4) = (%s)' % (', '.join(str(round(w, 4))
 for i in [[6.8, 210, 0.402, 0.739], [6.1, 180, 0.415, 0.713]]:
     _x = copy.copy(i)
     _x.insert(0, 1.)
-    print('When (x1, x2, x3, x4) = %s, the predicted value will be %.2f' 
+    print('When (x1, x2, x3, x4) = %s, the predicted value will be %.1f' 
         % (', '.join(str(round(_i, 4)) for _i in i), f(_x)))
